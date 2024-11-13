@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            background-color: #7b7878; /* Couleur de fond gris clair */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(48, 45, 45, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+            animation: colorChange 5s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            100% { color: #a72837; }
+        }
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        <!-- Ajoutez ici d'autres éléments de la barre de navigation si nécessaire -->
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        <h1>Inscription</h1>
+        
+        <% if (errorMessage) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+
+        <% if (successMessage) { %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
+        <!-- Formulaire d'inscription -->
+        <form action="/users/register" method="post">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse email :</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Rôle :</label>
+                <select class="form-control" id="role" name="role" required>
+                    <option value="admin">Admin</option>
+                    <option value="client">Client</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
+        </form>
+    </div>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

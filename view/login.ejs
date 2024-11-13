@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #871618;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            100% { color: #c41627; }
+        }
+
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            background-color: #1e1616; /* Couleur de fond gris clair */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(32, 31, 31, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #3a3f44;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4d6d92;
+            border-color: #8f1919;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .footer {
+    position: fixed; /* Fixe le footer en bas de la fenêtre */
+    bottom: 0; /* Positionne le footer en bas */
+    left: 0;
+    width: 100%;
+    background-color: #000000; /* Couleur de fond du footer */
+    color: #ffffff; /* Couleur du texte */
+    text-align: center; /* Centre le contenu du footer */
+    padding: 0px 0; /* Espace intérieur du footer */
+    height: 200px; /* Hauteur du footer */
+}
+.footer .container {
+    width: 100%;
+    max-width: 100%; /* Force la largeur maximale à 100% */
+    padding: 15; /* Supprime les espacements intérieurs */
+    margin: 5 auto; /* Centre le contenu horizontalement */
+}
+        
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">profil</a>
+                </li>
+               
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <h1>Connexion</h1>
+        <% if (errorMessage) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } else if (successMessage) { %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
+        <!-- Formulaire de connexion -->
+        <form id="loginForm" action="/users/login" method="post">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+            </div>
+            <div class="form-group">
+                <p style="color: #f8f9fa;">Vous n'avez pas de compte ? <a href="/users/register" style="color: #8f1919;">Créer un compte</a></p>
+                <a href="/forgot-password" style="color: #8f1919;">Mot de passe oublié ?</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Adresse : 123 Rue de la Réunion</a></li>
+                        <li><a class="text-muted" href="#">Téléphone : +1234567890</a></li>
+                        <li><a class="text-muted" href="#">Email : contact@reservation-salle.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Accueil</a></li>
+                        <li><a class="text-muted" href="#">Services</a></li>
+                        <li><a class="text-muted" href="#">À propos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Restez connecté</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Facebook</a></li>
+                        <li><a class="text-muted" href="#">Twitter</a></li>
+                        <li><a class="text-muted" href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap

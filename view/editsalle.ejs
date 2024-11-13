@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier une salle</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            background-color: #251919; /* Couleur de fond gris clair */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(251, 249, 249);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+            animation: colorChange 5s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            100% { color: #a72837; }
+        }
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            color: #ffffff; /* Couleur du texte des labels en blanc */
+        }
+        .btn-primary {
+            width: 100%;
+            background-color: #191d21;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard" style="color: #f8f9fa;">Back</a>
+            </li>
+        </ul>    
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        <h1>Modifier la salle</h1>
+        <!-- Formulaire de modification -->
+        <form action="/salle/<%= salle._id %>/edit" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="roomName">Nom de la salle :</label>
+                <input type="text" class="form-control" id="roomName" name="name" value="<%= salle.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="roomLocation">Emplacement de la salle :</label>
+                <input type="text" class="form-control" id="roomLocation" name="location" value="<%= salle.location %>" required>
+            </div>
+            <div class="form-group">
+                <label for="roomCapacity">Capacité de la salle :</label>
+                <input type="number" class="form-control" id="roomCapacity" name="capacity" value="<%= salle.capacity %>" required>
+            </div>
+            <div class="form-group">
+                <label for="priceRoom">prix  /jour(s) :</label>
+                <input type="number" class="form-control" id="priceRoom" name="prix" value="<%= salle.prix %>" required>
+            </div>
+            <div class="form-group">
+                <label for="roomImage">Image de la salle :</label>
+                <input type="file" class="form-control-file" id="roomImage" name="image" accept="image/*">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Modifier la salle</button>
+        </form>
+    </div>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

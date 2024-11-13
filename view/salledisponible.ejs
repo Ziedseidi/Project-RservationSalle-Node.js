@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des salles disponibles</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        /* Styles pour les boutons */
+        .btn-action {
+            margin-right: 10px;
+        }
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            margin-top: 50px;
+            background-color: #222029; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(48, 45, 45, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2a323a;
+            animation: colorChange 5s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            100% { color: #a72837; }
+        }
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+        }
+        .navbar-brand {
+            color: #f3efef !important;
+            font-weight: bold;
+        }
+        .card {
+            margin-bottom: 20px;
+            color: #032642;
+            position: relative; /* Position relative pour placer l'image absolument */
+        }
+        .card-img-top {
+            position: absolute; /* Position absolue pour aligner l'image à droite */
+            top: 0;
+            right: 0;
+            width: 250px; /* Largeur de l'image */
+            height: auto;
+        }
+        .btn-reserver {
+            background-color: #413d2d; /* Couleur de fond du bouton Réserver */
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        <!-- Ajoutez ici d'autres éléments de la barre de navigation si nécessaire -->
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        <h1>Liste des salles disponibles</h1>
+        <% if (salles && salles.length > 0) { %>
+            <% salles.forEach(function(salle) { %>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= salle.name %></h5>
+                        <!-- Autres détails de la salle -->
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>Aucune salle disponible pour le moment.</p>
+        <% } %>
+        
+        <% salles.forEach(function(salle) { %>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= salle.name %></h5>
+                    <p class="card-text">Capacité: <%= salle.capacity %></p>
+                    <p class="card-text">Emplacement: <%= salle.location %></p>
+                    <p class="card-text">Prix par jour: <%= salle.prix %> Dinars</p>
+                    <p class="card-text">Disponibilité: <%= salle.disponibilité ? 'Disponible' : 'Non disponible' %></p>
+                    <% if (salle.image) { %>
+                        <!-- Utilisez l'URL de l'image stockée dans la base de données -->
+                        <img src="<%= salle.image %>" class="card-img-top" alt="Image de la salle">
+                    <% } else { %>
+                        <p>Aucune image disponible</p>
+                    <% } %>
+                    <a href="/reservations/reserve/<%= salle._id %>" class="btn btn-primary btn-reserver">Réserver</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

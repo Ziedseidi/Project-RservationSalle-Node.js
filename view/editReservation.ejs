@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Réservation</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .alert {
+            margin-bottom: 20px;
+        }
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+            margin-bottom: 20px; /* Ajout de marge en bas pour séparation */
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        
+    </nav>
+
+    <div class="container">
+        <h1>Modifier Réservation</h1>
+        <% if (typeof errorMessage !== 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+        <% if (typeof successMessage !== 'undefined') { %>
+            <div class="alert alert-success" role="alert">
+                <%= successMessage %>
+            </div>
+        <% } %>
+        <form action="/reservations/<%= reservation._id %>/edit" method="POST">
+            <!-- Champ pour modifier les détails de la réservation -->
+            <div class="form-group">
+                <label for="datedebut">Date de début:</label>
+                <input type="datetime-local" class="form-control" id="dateDebut" name="dateDebut" <% if (reservation && reservation.datedébut) { %> value="<%= reservation.datedébut.toISOString().slice(0, 16) %>" <% } %> required>
+            </div>
+            <div class="form-group">
+                <label for="datefin">Date de fin:</label>
+                <input type="datetime-local" class="form-control" id="dateFin" name="dateFin" <% if (reservation && reservation.datefin) { %> value="<%= reservation.datefin.toISOString().slice(0, 16) %>" <% } %> required>
+            </div>
+            <!-- Ajoutez d'autres champs pour les autres détails de la réservation à modifier -->
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Adresse : 123 Rue de la Réunion</a></li>
+                        <li><a class="text-muted" href="#">Téléphone : +1234567890</a></li>
+                        <li><a class="text-muted" href="#">Email : contact@reservation-salle.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Accueil</a></li>
+                        <li><a class="text-muted" href="#">Services</a></li>
+                        <li><a class="text-muted" href="#">À propos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Restez connecté</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Facebook</a></li>
+                        <li><a class="text-muted" href="#">Twitter</a></li>
+                        <li><a class="text-muted" href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

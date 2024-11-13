@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Réservations</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Styles CSS personnalisés -->
+    <style>
+        body {
+            background-image: url('/IMG_4185-1024x683.jpg');
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #000000 !important;
+            height: 40px; /* Réduire la hauteur de la navbar */
+        }
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #871618;
+            animation: colorChange 5s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #007bff; }
+            100% { color: #c41627; }
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #1e1616; /* Couleur de fond gris clair */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(32, 31, 31, 0.1);
+        }
+        .table {
+            background-color: #fff;
+        }
+        th, td {
+            color: #000;
+        }
+        .table th {
+            background-color: #000;
+            color: #fff;
+        }
+        .table th,
+        .table td {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Reservation Salle de Reunion</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+           
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Mes Réservations</h1>
+        <% if (reservations.length > 0) { %>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Réservation ID</th>
+                        <th>Utilisateur</th>
+                        <th>Salle</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Prix total (Dinars)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reservations.forEach(reservation => { %>
+                        <tr>
+                            <td><%= reservation._id %></td>
+                            <td><%= username %></td>
+                            <% if (reservation.salle) { %>
+                                <td><%= reservation.salle.name %></td>
+                            <% } else { %>
+                                <td>Aucune salle associée</td>
+                            <% } %>
+                            <td><%= reservation.datedébut %></td>
+                            <td><%= reservation.datefin %></td>
+                            <td><%= reservation.totalPrice %></td>
+                            <td>
+                                <form action="/reservations/<%= reservation._id %>/delete" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger btn-action">Supprimer</button>
+                                </form>
+                                <a href="/reservations/<%= reservation._id %>/edit" class="btn btn-primary btn-action">Modifier</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <div class="text-center">
+                <p>Aucune réservation trouvée.</p>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
